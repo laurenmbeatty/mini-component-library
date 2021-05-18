@@ -1,44 +1,49 @@
-/* eslint-disable no-unused-vars */
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
-import { COLORS } from "../../constants";
-import VisuallyHidden from "../VisuallyHidden";
+import { COLORS } from '../../constants'
+import VisuallyHidden from '../VisuallyHidden'
 
 const SIZES = {
   small: {
-    "--borderRadius": 4 + "px",
-    "--padding": "0px",
-    "--height": "8px",
+    '--borderRadius': 4 + 'px',
+    '--padding': '0px',
+    '--height': '8px',
   },
   medium: {
-    "--borderRadius": 4 + "px",
-    "--padding": "0px",
-    "--height": "12px",
+    '--borderRadius': 4 + 'px',
+    '--padding': '0px',
+    '--height': '12px',
   },
   large: {
-    "--borderRadius": 8 + "px",
-    "--padding": "4px",
-    "--height": "16px",
+    '--borderRadius': 8 + 'px',
+    '--padding': '4px',
+    '--height': '16px',
   },
-};
+}
 
 const Wrapper = styled.div`
   background: ${COLORS.transparentGray15};
   border-radius: var(--borderRadius);
   padding: var(--padding);
-  box-shadow: inset 0px 2px 4px rgba(128, 128, 128, 0.35);
-  width: 100%;
-`;
+  box-shadow: inset 0px 2px 4px ${COLORS.transparentGray35};
+  width: 50%;
+`
+
+const Bar = styled.div({
+  borderRadius: 4,
+  overflow: 'hidden',
+})
 
 const InnerBar = styled.div(({ value }) => ({
   width: `${value}%`,
   background: COLORS.primary,
   height: `var(--height)`,
-  borderRadius: "4px 0 0 4px",
-}));
-const ProgressBar = ({ value, size }) => {
-  const styles = SIZES[size];
+  borderRadius: '4px 0 0 4px',
+}))
+
+const ProgressBar = ({ size, value }) => {
+  const styles = SIZES[size]
   return (
     <Wrapper
       role="progressbar"
@@ -48,11 +53,13 @@ const ProgressBar = ({ value, size }) => {
       size={size}
       style={styles}
     >
-      <InnerBar style={styles} value={value}>
-        <VisuallyHidden>{value}</VisuallyHidden>
-      </InnerBar>
+      <Bar>
+        <InnerBar style={styles} value={value}>
+          <VisuallyHidden>{value}</VisuallyHidden>
+        </InnerBar>
+      </Bar>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default ProgressBar;
+export default ProgressBar
