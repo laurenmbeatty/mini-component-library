@@ -15,6 +15,13 @@ const SelectWrapper = styled('select')(({ displayedValue }) => ({
   padding: `12px 16px 10px 16px`,
   width: `${(displayedValue.length + 24) / 1.5}ch`,
   appearance: 'none',
+  '&:focus': {
+    outline: '1px dotted #212121',
+    outline: '5px auto -webkit-focus-ring-color',
+  },
+  '&:hover': {
+    color: COLORS.black,
+  },
 }))
 
 const Wrapper = styled.label`
@@ -35,7 +42,7 @@ const Select = ({ label, value, onChange, children }) => {
   return (
     <>
       <Wrapper>
-        <StyledIcon id="chevron-down" />
+        <StyledIcon id="chevron-down" size={24} />
         <SelectWrapper
           value={value}
           onChange={onChange}
